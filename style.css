@@ -161,3 +161,8 @@ h2 { text-align: center; font-size: clamp(28px, 4.5vw, 42px); letter-spacing: -0
 /* legal pages */
 .legal { max-width: 760px; padding-top: 40px; padding-bottom: 48px; }
 .legal h1 { font-size: 34px; text-align: left; }
+
+/* feature screenshots: fixed frame so portrait (mobile) shots don't blow up */
+.feature-shot { aspect-ratio: 1280 / 800; background: var(--bg-alt); }
+.feature-shot picture { display: block; width: 100%; height: 100%; }
+.feature-shot img { width: 100%; height: 100%; object-fit: contain; }

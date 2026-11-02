@@ -161,6 +161,11 @@ h2 { text-align: center; font-size: clamp(28px, 4.5vw, 42px); letter-spacing: -0
 /* legal pages */
 .legal { max-width: 760px; padding-top: 40px; padding-bottom: 48px; }
 .legal h1 { font-size: 34px; text-align: left; }
+.legal h2 { font-size: 20px; margin: 28px 0 8px; }
+.legal ul { padding-left: 20px; }
+.legal li { margin: 4px 0; }
+.legal table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.legal th, .legal td { border: 1px solid var(--line, #e5e5ef); padding: 6px 8px; text-align: left; vertical-align: top; }
 
 /* feature screenshots: fixed frame so portrait (mobile) shots don't blow up */
 .feature-shot { aspect-ratio: 1280 / 800; background: var(--bg-alt); }

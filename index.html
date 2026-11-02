@@ -9,7 +9,7 @@
   <meta property="og:description" content="Todos los mejores modelos de IA en una sola suscripción, desde 9,99 €/mes.">
   <meta property="og:image" content="https://erizoai.com/img/hero-chat.png">
   <link rel="icon" href="erizo.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
   <header class="topbar">
@@ -146,7 +146,7 @@
     <!-- PRICING -->
     <section id="precios" class="section wrap">
       <h2>Precios sencillos</h2>
-      <p class="section-sub">IVA incluido · Sin permanencia · Todos los modelos en todos los planes</p>
+      <p class="section-sub">Precio final, sin IVA (franquicia) · Sin permanencia · Cancela cuando quieras · Todos los modelos en todos los planes</p>
       <div class="billing" role="group" aria-label="Periodo de facturación">
         <button class="active" data-period="monthly">Mensual</button>
         <button data-period="yearly">Anual <span class="save">2 meses gratis</span></button>
@@ -157,7 +157,7 @@
           <p class="tagline">Para el uso diario</p>
           <p class="price"><span data-monthly="9,99 €" data-yearly="8,33 €">9,99 €</span><small>/mes</small></p>
           <p class="billed" data-monthly="Facturado mensualmente" data-yearly="99,90 € al año">Facturado mensualmente</p>
-          <a class="btn btn-block" href="mailto:hola@erizoai.com?subject=Quiero%20el%20plan%20B%C3%A1sico">Empezar</a>
+          <a class="btn btn-block" data-plan="basico" data-mailto="mailto:hola@erizoai.com?subject=Quiero%20el%20plan%20B%C3%A1sico" href="mailto:hola@erizoai.com?subject=Quiero%20el%20plan%20B%C3%A1sico">Empezar</a>
           <ul class="checks">
             <li>Todos los modelos de texto: GPT, Claude, Gemini, Mistral, Grok…</li>
             <li>Modelos de razonamiento</li>
@@ -170,9 +170,9 @@
           <p class="badge-pop">Más popular</p>
           <h3>Estándar</h3>
           <p class="tagline">Para el uso intensivo</p>
-          <p class="price"><span data-monthly="19,99 €" data-yearly="16,67 €">19,99 €</span><small>/mes</small></p>
+          <p class="price"><span data-monthly="19,99 €" data-yearly="16,66 €">19,99 €</span><small>/mes</small></p>
           <p class="billed" data-monthly="Facturado mensualmente" data-yearly="199,90 € al año">Facturado mensualmente</p>
-          <a class="btn btn-block" href="mailto:hola@erizoai.com?subject=Quiero%20el%20plan%20Est%C3%A1ndar">Empezar</a>
+          <a class="btn btn-block" data-plan="estandar" data-mailto="mailto:hola@erizoai.com?subject=Quiero%20el%20plan%20Est%C3%A1ndar" href="mailto:hola@erizoai.com?subject=Quiero%20el%20plan%20Est%C3%A1ndar">Empezar</a>
           <ul class="checks">
             <li><strong>3 veces más uso</strong> que Básico</li>
             <li>Ideal para razonamiento, documentos e imágenes</li>
@@ -184,7 +184,7 @@
           <p class="tagline">Para el uso máximo</p>
           <p class="price"><span data-monthly="59,99 €" data-yearly="49,99 €">59,99 €</span><small>/mes</small></p>
           <p class="billed" data-monthly="Facturado mensualmente" data-yearly="599,90 € al año">Facturado mensualmente</p>
-          <a class="btn btn-block" href="mailto:hola@erizoai.com?subject=Quiero%20el%20plan%20Experto">Empezar</a>
+          <a class="btn btn-block" data-plan="experto" data-mailto="mailto:hola@erizoai.com?subject=Quiero%20el%20plan%20Experto" href="mailto:hola@erizoai.com?subject=Quiero%20el%20plan%20Experto">Empezar</a>
           <ul class="checks">
             <li><strong>10 veces más uso</strong> que Básico</li>
             <li>Para profesionales que usan la IA todo el día</li>
@@ -192,7 +192,8 @@
           </ul>
         </article>
       </div>
-      <p class="fine center">Lanzamiento muy pronto: escríbenos y te avisamos el primer día.</p>
+      <p class="fine center" id="launch-note">Lanzamiento muy pronto: escríbenos y te avisamos el primer día.</p>
+      <p class="fine center" id="pay-note" hidden>Pago procesado de forma segura por Stripe. Vendedor: Florian Weber, con el nombre comercial «Erizo AI» (Francia). IVA no aplicable (franquicia del IVA, art. 293 B del CGI francés). La suscripción se renueva automáticamente; cancélala cuando quieras desde «Mi suscripción». Consulta los <a href="terminos.html">términos y condiciones</a>.</p>
     </section>
 
     <!-- FAQ -->
@@ -219,7 +220,7 @@
 
   <footer class="wrap foot">
     <p class="foot-brand"><img src="erizo.svg" alt="" width="22" height="22"> Erizo AI · <a href="mailto:hola@erizoai.com">hola@erizoai.com</a></p>
-    <p><a href="terminos.html">Términos</a> · <a href="privacidad.html">Privacidad</a> · <a href="aviso-legal.html">Aviso legal</a></p>
+    <p><a href="terminos.html">Términos</a> · <a href="privacidad.html">Privacidad</a> · <a href="aviso-legal.html">Aviso legal</a> · <a href="cookies.html">Cookies</a></p>
     <p class="marks">GPT, Claude, Gemini, Mistral, Grok, DeepSeek, Qwen, Kimi, Perplexity y Nano Banana son marcas de sus respectivos titulares. Erizo AI no está afiliado a ellos.</p>
   </footer>
 
@@ -235,11 +236,27 @@
         img.src = `img/${name}.png`;
         img.alt = tab.querySelector('span').textContent;
       }));
+      // "Empezar" opens the app's sign-up with the chosen plan once the app is live (Phase 5);
+      // until then the buttons keep writing to us. Flip APP_OPEN at launch (owner step O9).
+      const ERIZO_APP_URL = 'https://app.erizoai.com';
+      const APP_OPEN = false;
+      const startLinks = document.querySelectorAll('a[data-plan]');
+      const setStartLinks = (period) => startLinks.forEach((a) => {
+        a.href = APP_OPEN
+          ? `${ERIZO_APP_URL}/register?plan=${a.dataset.plan}&periodo=${period === 'yearly' ? 'anual' : 'mensual'}`
+          : a.dataset.mailto;
+      });
+      setStartLinks('monthly');
+      if (APP_OPEN) {
+        document.getElementById('launch-note').hidden = true;
+        document.getElementById('pay-note').hidden = false;
+      }
       const buttons = document.querySelectorAll('.billing button');
       buttons.forEach((btn) => btn.addEventListener('click', () => {
         buttons.forEach((b) => b.classList.toggle('active', b === btn));
         const period = btn.dataset.period;
         document.querySelectorAll('[data-monthly]').forEach((el) => { el.textContent = el.dataset[period]; });
+        setStartLinks(period);
       }));
     })();
   </script>

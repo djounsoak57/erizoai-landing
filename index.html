@@ -238,12 +238,14 @@
       }));
       // "Empezar" opens the app's sign-up with the chosen plan once the app is live (Phase 5);
       // until then the buttons keep writing to us. Flip APP_OPEN at launch (owner step O9).
+      // Test phase: a private `?acceso=<key>` link opens them and hands the key to the app's gate.
       const ERIZO_APP_URL = 'https://app.erizoai.com';
-      const APP_OPEN = false;
+      const ACCESS = new URLSearchParams(location.search).get('acceso');
+      const APP_OPEN = false || Boolean(ACCESS);
       const startLinks = document.querySelectorAll('a[data-plan]');
       const setStartLinks = (period) => startLinks.forEach((a) => {
         a.href = APP_OPEN
-          ? `${ERIZO_APP_URL}/register?plan=${a.dataset.plan}&periodo=${period === 'yearly' ? 'anual' : 'mensual'}`
+          ? `${ERIZO_APP_URL}/register?plan=${a.dataset.plan}&periodo=${period === 'yearly' ? 'anual' : 'mensual'}${ACCESS ? `&acceso=${encodeURIComponent(ACCESS)}` : ''}`
           : a.dataset.mailto;
       });
       setStartLinks('monthly');

@@ -9,7 +9,7 @@
   <meta property="og:description" content="Todos los mejores modelos de IA en una sola suscripción, desde 9,99 €/mes.">
   <meta property="og:image" content="https://erizoai.com/img/hero-chat.png">
   <link rel="icon" href="erizo.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="style.css?v=4">
+  <link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
   <header class="topbar">
@@ -118,7 +118,6 @@
           <button role="tab" aria-selected="false" data-shot="models-menu"><span>Modo Auto y selección de modelo</span><small>Deja que Auto elija el mejor modelo para cada pregunta, o elige tú por categorías.</small></button>
           <button role="tab" aria-selected="false" data-shot="image-gen"><span>Imágenes y archivos</span><small>Genera imágenes y trabaja con PDF, documentos y fotos.</small></button>
           <button role="tab" aria-selected="false" data-shot="web-search"><span>Búsqueda web en tiempo real</span><small>Respuestas actualizadas con la información de hoy.</small></button>
-          <button role="tab" aria-selected="false" data-shot="assistants"><span>Tus propios asistentes</span><small>Crea asistentes con tus instrucciones y documentos.</small></button>
           <button role="tab" aria-selected="false" data-shot="hero-chat"><span>Voz y memoria</span><small>Dicta tus mensajes y deja que Erizo recuerde lo importante.</small></button>
           <button role="tab" aria-selected="false" data-shot="mobile-chat"><span>En todos tus dispositivos</span><small>Ordenador, tablet o móvil: instálalo como una app.</small></button>
         </div>
@@ -146,7 +145,6 @@
     <!-- PRICING -->
     <section id="precios" class="section wrap">
       <h2>Precios sencillos</h2>
-      <p class="section-sub">Precio final, sin IVA (franquicia) · Sin permanencia · Cancela cuando quieras · Todos los modelos en todos los planes</p>
       <div class="billing" role="group" aria-label="Periodo de facturación">
         <button class="active" data-period="monthly">Mensual</button>
         <button data-period="yearly">Anual <span class="save">2 meses gratis</span></button>
@@ -163,7 +161,7 @@
             <li>Modelos de razonamiento</li>
             <li>Búsqueda web con Perplexity</li>
             <li>Generación de imágenes</li>
-            <li>Asistentes, voz y memoria</li>
+            <li>Voz y memoria</li>
           </ul>
         </article>
         <article class="plan featured">
@@ -193,7 +191,6 @@
         </article>
       </div>
       <p class="fine center" id="launch-note">Lanzamiento muy pronto: escríbenos y te avisamos el primer día.</p>
-      <p class="fine center" id="pay-note" hidden>Pago procesado de forma segura por Stripe. Vendedor: Florian Weber, con el nombre comercial «Erizo AI» (Francia). IVA no aplicable (franquicia del IVA, art. 293 B del CGI francés). La suscripción se renueva automáticamente; cancélala cuando quieras desde «Mi suscripción». Consulta los <a href="terminos.html">términos y condiciones</a>.</p>
     </section>
 
     <!-- FAQ -->
@@ -251,7 +248,6 @@
       setStartLinks('monthly');
       if (APP_OPEN) {
         document.getElementById('launch-note').hidden = true;
-        document.getElementById('pay-note').hidden = false;
       }
       const buttons = document.querySelectorAll('.billing button');
       buttons.forEach((btn) => btn.addEventListener('click', () => {

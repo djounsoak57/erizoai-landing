@@ -122,6 +122,7 @@
   });
 
   const current = readConsent();
-  if (current === null) showBanner(false);
+  // Nothing to consent to until the pixel id is set: the banner appears with the pixel.
+  if (current === null && META_PIXEL_ID) showBanner(false);
   else applyConsent(current);
 })();

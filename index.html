@@ -9,7 +9,7 @@
   <meta property="og:description" content="Todos los mejores modelos de IA en una sola suscripción, desde 9,99 €/mes.">
   <meta property="og:image" content="https://erizoai.com/img/hero-chat.png">
   <link rel="icon" href="erizo.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="style.css?v=5">
+  <link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
   <header class="topbar">
@@ -217,10 +217,11 @@
 
   <footer class="wrap foot">
     <p class="foot-brand"><img src="erizo.svg" alt="" width="22" height="22"> Erizo AI · <a href="mailto:hola@erizoai.com">hola@erizoai.com</a></p>
-    <p><a href="terminos.html">Términos</a> · <a href="privacidad.html">Privacidad</a> · <a href="aviso-legal.html">Aviso legal</a> · <a href="cookies.html">Cookies</a></p>
+    <p><a href="terminos.html">Términos</a> · <a href="privacidad.html">Privacidad</a> · <a href="aviso-legal.html">Aviso legal</a> · <a href="cookies.html">Cookies</a> · <a href="#" data-cookie-settings>Configurar cookies</a></p>
     <p class="marks">GPT, Claude, Gemini, Mistral, Grok, DeepSeek, Qwen, Kimi, Perplexity y Nano Banana son marcas de sus respectivos titulares. Erizo AI no está afiliado a ellos.</p>
   </footer>
 
+  <script src="consent.js" defer></script>
   <script>
     (() => {
       const tabs = document.querySelectorAll('.feature-list [role="tab"]');
@@ -239,12 +240,20 @@
       const ERIZO_APP_URL = 'https://app.erizoai.com';
       const ACCESS = new URLSearchParams(location.search).get('acceso');
       const APP_OPEN = false || Boolean(ACCESS);
+      // Campaign labels travel in the sign-up link (nothing is stored); a bare fbclid means Meta.
+      const pageParams = new URLSearchParams(location.search);
+      const campaign = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content']
+        .filter((k) => pageParams.get(k))
+        .map((k) => [k, pageParams.get(k)]);
+      if (!pageParams.get('utm_source') && pageParams.has('fbclid')) campaign.unshift(['utm_source', 'meta']);
+      const campaignQuery = campaign.map(([k, v]) => `&${k}=${encodeURIComponent(v)}`).join('');
       const startLinks = document.querySelectorAll('a[data-plan]');
       const setStartLinks = (period) => startLinks.forEach((a) => {
         a.href = APP_OPEN
-          ? `${ERIZO_APP_URL}/register?plan=${a.dataset.plan}&periodo=${period === 'yearly' ? 'anual' : 'mensual'}${ACCESS ? `&acceso=${encodeURIComponent(ACCESS)}` : ''}`
+          ? `${ERIZO_APP_URL}/register?plan=${a.dataset.plan}&periodo=${period === 'yearly' ? 'anual' : 'mensual'}${ACCESS ? `&acceso=${encodeURIComponent(ACCESS)}` : ''}${campaignQuery}`
           : a.dataset.mailto;
       });
+      startLinks.forEach((a) => a.addEventListener('click', () => window.erizoTrack?.('Lead')));
       setStartLinks('monthly');
       if (APP_OPEN) {
         document.getElementById('launch-note').hidden = true;

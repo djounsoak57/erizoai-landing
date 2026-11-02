@@ -171,3 +171,15 @@ h2 { text-align: center; font-size: clamp(28px, 4.5vw, 42px); letter-spacing: -0
 .feature-shot { aspect-ratio: 1280 / 800; background: var(--bg-alt); }
 .feature-shot picture { display: block; width: 100%; height: 100%; }
 .feature-shot img { width: 100%; height: 100%; object-fit: contain; }
+
+/* cookie banner */
+.consent { position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 50; max-width: 720px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px; background: var(--card); color: var(--ink); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px; box-shadow: var(--shadow), 0 12px 40px rgba(20, 17, 43, .18); }
+.consent[hidden] { display: none; }
+.consent p { margin: 0; flex: 1 1 280px; font-size: 14.5px; }
+.consent-actions { display: flex; gap: 10px; }
+.consent-actions .btn { min-width: 108px; cursor: pointer; font: inherit; font-size: 14px; font-weight: 700; }
+@media (max-width: 560px) {
+  .consent { left: 0; right: 0; bottom: 0; max-width: none; border-radius: var(--radius) var(--radius) 0 0; border-bottom: 0; }
+  .consent-actions { width: 100%; }
+  .consent-actions .btn { flex: 1; }
+}

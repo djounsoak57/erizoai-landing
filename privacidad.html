@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Política de privacidad — Erizo AI</title>
   <link rel="icon" href="erizo.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="style.css?v=5">
+  <link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
   <header class="wrap nav"><a class="brand" href="/"><img src="erizo.svg" alt="" width="36" height="36"> Erizo<span>AI</span></a></header>
@@ -26,6 +26,7 @@
       <tr><td>Consumo por petición (modelo, coste)</td><td>Calcular tu cuota de uso y prevenir abusos</td><td>Ejecución del contrato e interés legítimo</td></tr>
       <tr><td>Suscripción: plan, estado, fechas, identificadores de Stripe, aceptación de las condiciones</td><td>Gestionar la suscripción y acreditar tu consentimiento</td><td>Ejecución del contrato y obligación legal</td></tr>
       <tr><td>Datos técnicos: dirección IP, navegador, registros de seguridad</td><td>Seguridad del servicio y detección de fraude o de cuentas compartidas</td><td>Interés legítimo</td></tr>
+      <tr><td>Origen de la visita (parámetros de campaña de los enlaces)</td><td>Medir qué anuncios atraen clientes</td><td>Interés legítimo</td></tr>
     </table>
     <p>No vemos ni guardamos los datos de tu tarjeta: los trata directamente Stripe.</p>
 
@@ -35,6 +36,7 @@
       <li><strong>Proveedores de modelos</strong> a través de OpenRouter: OpenAI, Anthropic, Google, Mistral AI, xAI, Perplexity y, para los modelos abiertos (DeepSeek, Qwen, Kimi), proveedores de alojamiento de la UE o EE. UU. La mayoría de los modelos funcionan <strong>sin conservación de datos</strong> (<em>zero data retention</em>). Excepción: <strong>Claude Fable 5.1</strong> y <strong>GPT Image 2</strong> no tienen esa opción; su proveedor puede conservar temporalmente los datos según sus propias condiciones, pero nunca para entrenar.</li>
       <li><strong>Stripe</strong> (Stripe Payments Europe Ltd., Irlanda): procesamiento de los pagos, recibos y facturas, prevención del fraude. Actúa como responsable independiente de los datos de pago.</li>
       <li><strong>Railway Corp.</strong> (EE. UU.): alojamiento de la aplicación y de la base de datos en sus servidores de Ámsterdam (Países Bajos), dentro de la Unión Europea.</li>
+      <li><strong>Meta Platforms Ireland Ltd.</strong> (Irlanda): solo si aceptas las cookies de medición, recibe tu email cifrado (hash) y los eventos de registro y compra para medir nuestros anuncios.</li>
       <li><strong>Brevo (Sendinblue SAS</strong>, Francia): envío de emails transaccionales.</li>
       <li><strong>Google y Apple</strong>, solo si eliges iniciar sesión con ellos.</li>
     </ul>
@@ -43,7 +45,7 @@
     <h2>5. Cuánto tiempo los conservamos</h2>
     <ul>
       <li>Cuenta, conversaciones, archivos y memoria: mientras tengas cuenta, o hasta que los borres tú.</li>
-      <li>Registro de consumo para las cuotas: 40 días.</li>
+      <li>Registro de consumo: mientras tengas cuenta (cuotas, comprensión del uso y rentabilidad).</li>
       <li>Datos de la suscripción y de tu consentimiento: mientras dure la suscripción y después el plazo legal de prescripción de las acciones derivadas del contrato.</li>
       <li>Registros técnicos de seguridad: hasta 30 días.</li>
     </ul>
@@ -60,6 +62,7 @@
 
     <p>Última actualización: 02/11/2026.</p>
   </main>
-  <footer class="wrap foot"><p>© 2026 Erizo AI</p><p><a href="terminos.html">Términos</a> · <a href="privacidad.html">Privacidad</a> · <a href="aviso-legal.html">Aviso legal</a> · <a href="cookies.html">Cookies</a></p></footer>
+  <footer class="wrap foot"><p>© 2026 Erizo AI</p><p><a href="terminos.html">Términos</a> · <a href="privacidad.html">Privacidad</a> · <a href="aviso-legal.html">Aviso legal</a> · <a href="cookies.html">Cookies</a> · <a href="#" data-cookie-settings>Configurar cookies</a></p></footer>
+  <script src="consent.js" defer></script>
 </body>
 </html>

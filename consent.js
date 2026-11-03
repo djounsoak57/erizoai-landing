@@ -1,6 +1,6 @@
 // Cookie banner and Meta pixel. Nothing is sent to Meta before "Aceptar".
 (() => {
-  const META_PIXEL_ID = ''; // Meta pixel id; empty = no pixel even with consent
+  const META_PIXEL_ID = '1655427166275591'; // Meta pixel id; empty = no pixel even with consent
   const COOKIE = 'erizo_consent';
   const MAX_AGE = 15552000; // 6 months
 

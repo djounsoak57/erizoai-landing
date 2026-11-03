@@ -10,7 +10,7 @@
   <meta property="og:description" content="Todos los mejores modelos de IA en una sola suscripción, desde 9,99 €/mes.">
   <meta property="og:image" content="https://erizoai.com/img/hero-chat.png">
   <link rel="icon" href="erizo.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="style.css?v=6">
+  <link rel="stylesheet" href="style.css?v=7">
 </head>
 <body>
   <header class="topbar">
@@ -22,7 +22,10 @@
         <a href="#privacidad">Privacidad</a>
         <a href="#precios">Precios</a>
       </div>
-      <a class="btn btn-sm" href="#precios">Empezar</a>
+      <div class="nav-actions">
+        <a class="login" id="login-link" href="https://app.erizoai.com/login">Iniciar sesión</a>
+        <a class="btn btn-sm" href="#precios">Empezar</a>
+      </div>
     </nav>
   </header>
 
@@ -272,6 +275,10 @@
           : a.dataset.mailto;
       });
       startLinks.forEach((a) => a.addEventListener('click', () => window.erizoTrack?.('Lead')));
+      // Returning customers sign in on the app (the private test link carries the access key).
+      if (ACCESS) {
+        document.getElementById('login-link').href = `${ERIZO_APP_URL}/login?acceso=${encodeURIComponent(ACCESS)}`;
+      }
       setStartLinks('monthly');
       if (APP_OPEN) {
         document.getElementById('launch-note').hidden = true;

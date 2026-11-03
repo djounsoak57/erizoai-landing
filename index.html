@@ -227,13 +227,30 @@
       const tabs = document.querySelectorAll('.feature-list [role="tab"]');
       const img = document.getElementById('feature-img');
       const webp = document.getElementById('feature-webp');
-      tabs.forEach((tab) => tab.addEventListener('click', () => {
-        tabs.forEach((t) => t.setAttribute('aria-selected', String(t === tab)));
-        const name = tab.dataset.shot;
-        webp.srcset = `img/${name}.webp`;
-        img.src = `img/${name}.png`;
-        img.alt = tab.querySelector('span').textContent;
-      }));
+      // Screenshots load ahead of the click: all of them once the section comes near, so a tab
+      // switch shows its image at once instead of waiting for the download.
+      const loaded = {};
+      const load = (name) =>
+        (loaded[name] ??= Object.assign(new Image(), { src: `img/${name}.webp` }).decode().catch(() => {}));
+      new IntersectionObserver((entries, observer) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          tabs.forEach((t) => load(t.dataset.shot));
+          observer.disconnect();
+        }
+      }, { rootMargin: '800px' }).observe(document.getElementById('funciones'));
+      tabs.forEach((tab) => {
+        tab.addEventListener('pointerenter', () => load(tab.dataset.shot));
+        tab.addEventListener('click', () => {
+          tabs.forEach((t) => t.setAttribute('aria-selected', String(t === tab)));
+          const name = tab.dataset.shot;
+          load(name).then(() => {
+            if (tab.getAttribute('aria-selected') !== 'true') return; // another tab was clicked meanwhile
+            webp.srcset = `img/${name}.webp`;
+            img.src = `img/${name}.png`;
+            img.alt = tab.querySelector('span').textContent;
+          });
+        });
+      });
       // "Empezar" opens the app's sign-up with the chosen plan once the app is live (Phase 5);
       // until then the buttons keep writing to us. Flip APP_OPEN at launch (owner step O9).
       // Test phase: a private `?acceso=<key>` link opens them and hands the key to the app's gate.
